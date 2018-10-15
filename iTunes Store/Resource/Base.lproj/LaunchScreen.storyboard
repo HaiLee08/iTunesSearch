@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gYo-eu-H1k">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="yMp-jn-7XI">
+            <objects>
+                <viewController id="gYo-eu-H1k" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="txR-QC-J0E">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_star" translatesAutoresizingMaskIntoConstraints="NO" id="tAi-pi-dJX">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tAi-pi-dJX" secondAttribute="height" multiplier="1:1" id="ehp-Mc-FbK"/>
+                                    <constraint firstAttribute="height" constant="100" id="qAz-fw-mvm"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.062745098040000002" green="0.074509803920000006" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="tAi-pi-dJX" firstAttribute="centerY" secondItem="txR-QC-J0E" secondAttribute="centerY" id="WRB-Tw-dli"/>
+                            <constraint firstItem="tAi-pi-dJX" firstAttribute="centerX" secondItem="txR-QC-J0E" secondAttribute="centerX" id="sUl-DY-Foe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xAx-CX-8Kh"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XSG-8q-AJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="89" y="384"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_star" width="732" height="706"/>
+    </resources>
+</document>
