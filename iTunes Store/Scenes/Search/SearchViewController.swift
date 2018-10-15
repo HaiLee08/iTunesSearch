@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     private enum Const {
         static let interitemSpacing = 16
         static let lineSpacing = 20
-        static let numberOfItemsPerRow = 1.0
+        static var numberOfItemsPerRow = 1.0
     }
     
     //MARK: Outlets
@@ -23,13 +23,21 @@ class SearchViewController: UIViewController {
     private var searchText: String = ""
     private var viewModel = SearchViewModel()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         selfConfig()
         bindViewModel()
         viewModel.getItems(text: "instagram")
     }
-
+    
     //MARK: Self
     func selfConfig() {
         self.navigationItem.title = C.STRING.TITLE.search
@@ -52,6 +60,17 @@ class SearchViewController: UIViewController {
         }
     }
     
+}
+
+// MARK: Orientation
+extension SearchViewController {
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            Const.numberOfItemsPerRow = 2
+        } else {
+            Const.numberOfItemsPerRow = 1
+        }
+    }
 }
 
 //MARK: CollectionView

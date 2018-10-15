@@ -14,7 +14,7 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.height
 enum C {
     enum STRING {
         enum TITLE {
-            static let search = "Ara"
+            static let search = "Search"
         }
     }
 }

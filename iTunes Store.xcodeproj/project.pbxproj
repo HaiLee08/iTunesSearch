@@ -28,6 +28,7 @@
 		056C731A2174D67900308E3B /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C73012174D67900308E3B /* EndPointType.swift */; };
 		056C731B2174D67900308E3B /* SearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C73042174D67900308E3B /* SearchRequestModel.swift */; };
 		056C731C2174D67900308E3B /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C73072174D67900308E3B /* SearchModel.swift */; };
+		056C731E21752B6300308E3B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C731D21752B6300308E3B /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		056C73012174D67900308E3B /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		056C73042174D67900308E3B /* SearchRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRequestModel.swift; sourceTree = "<group>"; };
 		056C73072174D67900308E3B /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		056C731D21752B6300308E3B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		056C72E72174D67800308E3B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				056C731D21752B6300308E3B /* NavigationController.swift */,
 				056C72E82174D67800308E3B /* Search */,
 			);
 			path = Scenes;
@@ -118,9 +121,9 @@
 		056C72E82174D67800308E3B /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				056C72E92174D67800308E3B /* SearchCell.swift */,
 				056C72EA2174D67800308E3B /* SearchViewController.swift */,
 				056C72EB2174D67800308E3B /* SearchViewModel.swift */,
+				056C72E92174D67800308E3B /* SearchCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -155,10 +158,10 @@
 		056C72F52174D67900308E3B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				056C72F62174D67900308E3B /* Encoding */,
 				056C72F92174D67900308E3B /* Manager */,
 				056C72FB2174D67900308E3B /* EndPoint */,
 				056C72FD2174D67900308E3B /* Service */,
+				056C72F62174D67900308E3B /* Encoding */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				056C73142174D67900308E3B /* URLParameterEncoding.swift in Sources */,
 				056C72D12174D5EC00308E3B /* AppDelegate.swift in Sources */,
 				056C730D2174D67900308E3B /* SearchViewModel.swift in Sources */,
+				056C731E21752B6300308E3B /* NavigationController.swift in Sources */,
 				056C73162174D67900308E3B /* iTunesEndPoint.swift in Sources */,
 				056C730B2174D67900308E3B /* SearchCell.swift in Sources */,
 				056C73122174D67900308E3B /* UIColor+Utilities.swift in Sources */,
@@ -469,6 +473,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49B6CHGBM7;
 				INFOPLIST_FILE = "$(SRCROOT)/iTunes Store/Resource/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,6 +492,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49B6CHGBM7;
 				INFOPLIST_FILE = "$(SRCROOT)/iTunes Store/Resource/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
