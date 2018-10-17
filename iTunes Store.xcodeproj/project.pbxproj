@@ -29,6 +29,9 @@
 		056C731B2174D67900308E3B /* SearchRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C73042174D67900308E3B /* SearchRequestModel.swift */; };
 		056C731C2174D67900308E3B /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C73072174D67900308E3B /* SearchModel.swift */; };
 		056C731E21752B6300308E3B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C731D21752B6300308E3B /* NavigationController.swift */; };
+		056C736B21768F9500308E3B /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C736A21768F9500308E3B /* UIImageView+Download.swift */; };
+		056C736D2176915E00308E3B /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C736C2176915E00308E3B /* StoryboardLoadable.swift */; };
+		056C7371217697AE00308E3B /* SearchBar+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C7370217697AE00308E3B /* SearchBar+TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		056C73042174D67900308E3B /* SearchRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRequestModel.swift; sourceTree = "<group>"; };
 		056C73072174D67900308E3B /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		056C731D21752B6300308E3B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		056C736A21768F9500308E3B /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
+		056C736C2176915E00308E3B /* StoryboardLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
+		056C7370217697AE00308E3B /* SearchBar+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+TextField.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,8 +155,11 @@
 		056C72F22174D67900308E3B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				056C736C2176915E00308E3B /* StoryboardLoadable.swift */,
+				056C736A21768F9500308E3B /* UIImageView+Download.swift */,
 				056C72F32174D67900308E3B /* NSObject+ClassName.swift */,
 				056C72F42174D67900308E3B /* UIColor+Utilities.swift */,
+				056C7370217697AE00308E3B /* SearchBar+TextField.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -194,10 +203,10 @@
 		056C72FD2174D67900308E3B /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				056C72FE2174D67900308E3B /* HTTPTask.swift */,
-				056C72FF2174D67900308E3B /* HTTPMethod.swift */,
 				056C73002174D67900308E3B /* NetworkProvider.swift */,
 				056C73012174D67900308E3B /* EndPointType.swift */,
+				056C72FE2174D67900308E3B /* HTTPTask.swift */,
+				056C72FF2174D67900308E3B /* HTTPMethod.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -313,14 +322,17 @@
 				056C73182174D67900308E3B /* HTTPMethod.swift in Sources */,
 				056C730C2174D67900308E3B /* SearchViewController.swift in Sources */,
 				056C73102174D67900308E3B /* Assets.swift in Sources */,
+				056C7371217697AE00308E3B /* SearchBar+TextField.swift in Sources */,
 				056C73152174D67900308E3B /* NetworkManager.swift in Sources */,
 				056C73172174D67900308E3B /* HTTPTask.swift in Sources */,
 				056C73142174D67900308E3B /* URLParameterEncoding.swift in Sources */,
 				056C72D12174D5EC00308E3B /* AppDelegate.swift in Sources */,
 				056C730D2174D67900308E3B /* SearchViewModel.swift in Sources */,
+				056C736B21768F9500308E3B /* UIImageView+Download.swift in Sources */,
 				056C731E21752B6300308E3B /* NavigationController.swift in Sources */,
 				056C73162174D67900308E3B /* iTunesEndPoint.swift in Sources */,
 				056C730B2174D67900308E3B /* SearchCell.swift in Sources */,
+				056C736D2176915E00308E3B /* StoryboardLoadable.swift in Sources */,
 				056C73122174D67900308E3B /* UIColor+Utilities.swift in Sources */,
 				056C73112174D67900308E3B /* NSObject+ClassName.swift in Sources */,
 				056C73192174D67900308E3B /* NetworkProvider.swift in Sources */,

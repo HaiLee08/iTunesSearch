@@ -16,15 +16,20 @@ struct SearchGroup: Decodable {
 
 struct SearchModel: Decodable {
     let artistName: String
+    let artworkUrl100: String
+    let trackCensoredName: String
    
+    enum CodingKeys: String, CodingKey {
+        case artistName
+        case artworkUrl100
+        case trackCensoredName
+    }
     
-//    init(artistName: String, artworkUrl100: String, collectionId: Int, collectionName: String, country: String, primaryGenreName: String, releaseDate: String) {
-//        self.artistName = artistName
-//        self.artworkUrl100 = artworkUrl100
-//        self.collectionId = collectionId
-//        self.collectionName = collectionName
-//        self.country = country
-//        self.primaryGenreName = primaryGenreName
-//        self.releaseDate = releaseDate
-//    }
+    init(from decoder : Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        artistName = try values.decodeIfPresent(String.self, forKey: .artistName) ?? ""
+        artworkUrl100 = try values.decodeIfPresent(String.self, forKey: .artworkUrl100) ?? ""
+        trackCensoredName = try values.decodeIfPresent(String.self, forKey: .trackCensoredName) ?? ""
+
+    }
 }

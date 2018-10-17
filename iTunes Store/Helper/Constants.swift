@@ -17,4 +17,7 @@ enum C {
             static let search = "Search"
         }
     }
+    enum StoryboardName {
+        static let main = "Main"
+    }
 }

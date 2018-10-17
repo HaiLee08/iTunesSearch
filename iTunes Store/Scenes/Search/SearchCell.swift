@@ -16,10 +16,12 @@ class SearchCell: UICollectionViewCell {
     var item: SearchModel? {
         didSet {
             if let item = item {
-//                imageViewCoverImage?.setImage(urlString: cuisine.simpleImage)
-                labelTitle?.text = item.artistName
+                labelTitle?.text = item.trackCensoredName
+                imageViewCoverImage?.downloaded(from: item.artworkUrl100)
             }
         }
     }
     
 }
+
+

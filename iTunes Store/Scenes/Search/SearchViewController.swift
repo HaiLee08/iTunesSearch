@@ -8,7 +8,9 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, StoryboardLoadable {
+    
+    static var defaultStoryboardName = C.StoryboardName.main
 
     private enum Const {
         static let interitemSpacing = 16
@@ -19,6 +21,7 @@ class SearchViewController: UIViewController {
     //MARK: Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     private var searchText: String = ""
     private var viewModel = SearchViewModel()
@@ -35,7 +38,6 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         selfConfig()
         bindViewModel()
-        viewModel.getItems(text: "instagram")
     }
     
     //MARK: Self
@@ -103,5 +105,35 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(Const.interitemSpacing)
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if let searchText = searchBar.text, searchText.count > 2  {
+            textDidChange(searchBar: searchBar)
+        }
+    }
+    
+    func textDidChange(searchBar: UISearchBar) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(didEndEditing), object: searchBar)
+        self.perform(#selector(didEndEditing), with: searchBar, afterDelay: 1)
+    }
+    
+    @objc func didEndEditing(searchBar: UISearchBar) {
+        viewModel.getItems(text: searchBar.text!)
+    }
+}
+
+extension SearchViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = -1 * scrollView.contentOffset.y
+        
+        let transform = CGAffineTransform.identity
+        
+        let transformTrans = transform.translatedBy(x: 0, y: y)
+        
+        searchBar.transform = transformTrans
     }
 }

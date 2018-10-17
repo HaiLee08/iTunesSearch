@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,23 +13,23 @@
         <!--Search View Controller-->
         <scene sceneID="1Ye-DA-ned">
             <objects>
-                <viewController storyboardIdentifier="SearchViewController" id="DCe-k7-6vz" customClass="SearchViewController" customModule="itunessearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" id="DCe-k7-6vz" customClass="SearchViewController" customModule="iTunes_Store" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wEu-pc-d39">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uqs-VE-tpe">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uqs-VE-tpe">
                                 <rect key="frame" x="20" y="0.0" width="355" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wSL-XT-wuR">
                                     <size key="itemSize" width="328" height="122"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="60" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCell" id="hfH-C7-uLq" customClass="SearchCell" customModule="itunessearch" customModuleProvider="target">
-                                        <rect key="frame" x="13.5" y="20" width="328" height="120"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCell" id="hfH-C7-uLq" customClass="SearchCell" customModule="iTunes_Store" customModuleProvider="target">
+                                        <rect key="frame" x="13.5" y="60" width="328" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="120"/>
@@ -40,7 +41,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-0R-tDB" userLabel="ViewSub">
                                                             <rect key="frame" x="20" y="20" width="308" height="100"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY1-9V-FU5">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BY1-9V-FU5">
                                                                     <rect key="frame" x="100" y="10" width="188" height="80"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,7 +95,16 @@
                                     <outlet property="delegate" destination="DCe-k7-6vz" id="Z6d-Za-W8l"/>
                                 </connections>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4EA-JD-OHI">
+                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Ara" translatesAutoresizingMaskIntoConstraints="NO" id="ZyG-rl-ve4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="1"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DCe-k7-6vz" id="ueI-q1-d5g"/>
+                                </connections>
+                            </searchBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4EA-JD-OHI">
                                 <rect key="frame" x="177.5" y="265.5" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -102,10 +112,13 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="uqs-VE-tpe" secondAttribute="bottom" id="6Hd-BA-zhV"/>
                             <constraint firstItem="4EA-JD-OHI" firstAttribute="centerX" secondItem="wEu-pc-d39" secondAttribute="centerX" id="9k8-LJ-Brg"/>
+                            <constraint firstItem="C8Z-Wv-USg" firstAttribute="trailing" secondItem="ZyG-rl-ve4" secondAttribute="trailing" id="XPq-ZS-qbm"/>
+                            <constraint firstItem="ZyG-rl-ve4" firstAttribute="top" secondItem="C8Z-Wv-USg" secondAttribute="top" id="Xx1-Q5-zrP"/>
                             <constraint firstItem="uqs-VE-tpe" firstAttribute="leading" secondItem="C8Z-Wv-USg" secondAttribute="leading" constant="20" id="YFo-ER-i00"/>
+                            <constraint firstItem="uqs-VE-tpe" firstAttribute="top" secondItem="C8Z-Wv-USg" secondAttribute="top" id="bO7-Zc-jbv"/>
                             <constraint firstItem="uqs-VE-tpe" firstAttribute="trailing" secondItem="C8Z-Wv-USg" secondAttribute="trailing" id="e9B-PD-B0d"/>
                             <constraint firstItem="4EA-JD-OHI" firstAttribute="centerY" secondItem="wEu-pc-d39" secondAttribute="centerY" id="eUy-oT-i2X"/>
-                            <constraint firstItem="uqs-VE-tpe" firstAttribute="top" secondItem="C8Z-Wv-USg" secondAttribute="top" id="zhu-zO-1op"/>
+                            <constraint firstItem="ZyG-rl-ve4" firstAttribute="leading" secondItem="C8Z-Wv-USg" secondAttribute="leading" id="uGB-Oj-VhK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C8Z-Wv-USg"/>
                     </view>
@@ -113,11 +126,12 @@
                     <connections>
                         <outlet property="activityIndicator" destination="4EA-JD-OHI" id="pyu-7m-3g2"/>
                         <outlet property="collectionView" destination="uqs-VE-tpe" id="H6Z-U1-tyi"/>
+                        <outlet property="searchBar" destination="ZyG-rl-ve4" id="gJc-ap-Ccm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oS0-OD-G5z" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="117"/>
+            <point key="canvasLocation" x="852" y="116.49175412293854"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4sI-vd-ksP">
