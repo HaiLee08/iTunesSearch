@@ -25,19 +25,15 @@ class SearchViewController: UIViewController, StoryboardLoadable {
     
     private var searchText: String = ""
     private var viewModel = SearchViewModel()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
+    private var dataSource: SearchesDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         selfConfig()
         bindViewModel()
+        
+        dataSource = SearchesDataSource(viewModel: viewModel)
+        collectionView.dataSource = dataSource
     }
     
     //MARK: Self
@@ -75,18 +71,8 @@ extension SearchViewController {
     }
 }
 
-//MARK: CollectionView
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItems
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.className,
-                                                      for: indexPath) as! SearchCell
-        cell.item = viewModel.itemAtIndex(indexPath.row)
-        return cell
-    }
+// MARK: CollectionView
+extension SearchViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
@@ -126,14 +112,11 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+
 extension SearchViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y = -1 * scrollView.contentOffset.y
-        
-        let transform = CGAffineTransform.identity
-        
-        let transformTrans = transform.translatedBy(x: 0, y: y)
-        
-        searchBar.transform = transformTrans
+        let transform = CGAffineTransform.identity.translatedBy(x: 0, y: y)
+        searchBar.transform = transform
     }
 }

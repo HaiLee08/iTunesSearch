@@ -32,6 +32,7 @@
 		056C736B21768F9500308E3B /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C736A21768F9500308E3B /* UIImageView+Download.swift */; };
 		056C736D2176915E00308E3B /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C736C2176915E00308E3B /* StoryboardLoadable.swift */; };
 		056C7371217697AE00308E3B /* SearchBar+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C7370217697AE00308E3B /* SearchBar+TextField.swift */; };
+		058AA26C217742B9009DB039 /* SearchViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058AA26B217742B9009DB039 /* SearchViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		056C736A21768F9500308E3B /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		056C736C2176915E00308E3B /* StoryboardLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
 		056C7370217697AE00308E3B /* SearchBar+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchBar+TextField.swift"; sourceTree = "<group>"; };
+		058AA26B217742B9009DB039 /* SearchViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				056C72EA2174D67800308E3B /* SearchViewController.swift */,
+				058AA26B217742B9009DB039 /* SearchViewDataSource.swift */,
 				056C72EB2174D67800308E3B /* SearchViewModel.swift */,
 				056C72E92174D67800308E3B /* SearchCell.swift */,
 			);
@@ -320,6 +323,7 @@
 				056C730F2174D67900308E3B /* Constants.swift in Sources */,
 				056C731C2174D67900308E3B /* SearchModel.swift in Sources */,
 				056C73182174D67900308E3B /* HTTPMethod.swift in Sources */,
+				058AA26C217742B9009DB039 /* SearchViewDataSource.swift in Sources */,
 				056C730C2174D67900308E3B /* SearchViewController.swift in Sources */,
 				056C73102174D67900308E3B /* Assets.swift in Sources */,
 				056C7371217697AE00308E3B /* SearchBar+TextField.swift in Sources */,
