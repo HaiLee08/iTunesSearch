@@ -53,11 +53,11 @@ class SearchViewModel {
 //MARK: Service
 extension SearchViewModel {
     
-    func getItems(text: String = "") {
+    func getItems(text: String = "", media: MediaType = .all) {
         onChange?(state.setFetching(fetching: true))
-        NetworkManager.shared.search(text: text, completion: { (result) in
-            self.onChange?(self.state.setItems(result.results))
+        NetworkManager.shared.search(text: text, media: media,completion: { (result) in
             self.onChange?(self.state.setFetching(fetching: false))
+            self.onChange?(self.state.setItems(result.results))
         }) { (error) in
             self.onChange?(.error(error))
             self.onChange?(self.state.setFetching(fetching: false))

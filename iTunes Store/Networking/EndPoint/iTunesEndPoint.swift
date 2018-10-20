@@ -10,11 +10,17 @@ import UIKit
 
 /// example: itunes.apple.com/search?term=...&media=....
 
+enum MediaType: String {
+    case movie
+    case podcast
+    case music
+    case all
+}
 
 private let APIURL = "https://itunes.apple.com"
 
-public enum iTunesEndPoint {
-    case search(term: String)
+enum iTunesEndPoint {
+    case search(term: String, media: MediaType)
 }
 
 extension iTunesEndPoint: EndPointType {
@@ -38,8 +44,9 @@ extension iTunesEndPoint: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .search(let term):
-            return .requestParameters(bodyEncoding: .urlEncoding, urlParameters: ["term": term])
+        case .search(let term, let media):
+            return .requestParameters(bodyEncoding: .urlEncoding, urlParameters: ["term": term,
+                                                                                  "media": media])
         }
     }
     

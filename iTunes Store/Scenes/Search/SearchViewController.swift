@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, StoryboardLoadable {
+class SearchViewController: BaseViewController, StoryboardLoadable {
     
     static var defaultStoryboardName = C.StoryboardName.main
 
@@ -23,22 +23,43 @@ class SearchViewController: UIViewController, StoryboardLoadable {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    private var viewNoResult = NoResultView.loadFromNib()
     private var searchText: String = ""
     private var viewModel = SearchViewModel()
     private var dataSource: SearchesDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addRightNavButton(image: #imageLiteral(resourceName: "ic_filter"))
         selfConfig()
         bindViewModel()
         
+        view.addSubview(viewNoResult)
+    
         dataSource = SearchesDataSource(viewModel: viewModel)
         collectionView.dataSource = dataSource
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        viewNoResult.center = collectionView.center
+    }
+    
+    override func handleRightButton() {
+        let filterView = FilterView.loadFromNib()
+        filterView.show()
+        filterView.didTapOk = { mediaType in
+            self.getItems(text: self.searchText, media: mediaType)
+        }
     }
     
     //MARK: Self
     func selfConfig() {
         self.navigationItem.title = C.STRING.TITLE.search
+    }
+    
+    func getItems(text: String, media: MediaType = .all) {
+        viewModel.getItems(text: searchBar.text!, media: media)
     }
     
     func bindViewModel() {
@@ -51,13 +72,22 @@ class SearchViewController: UIViewController, StoryboardLoadable {
             break
         case .items:
             collectionView.reloadData()
+            updateNoResultView()
             break
         case .fetchStateChanged(let fetching):
             activityIndicator.isHidden = !fetching
+            viewNoResult.isHidden = viewModel.state.fetching
             break
         }
     }
     
+    func updateNoResultView()  {
+        if viewModel.state.items.count == 0{
+            viewNoResult.isHidden = false
+        } else {
+            viewNoResult.isHidden = true
+        }
+    }
 }
 
 // MARK: Orientation
@@ -94,6 +124,7 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -108,7 +139,8 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     @objc func didEndEditing(searchBar: UISearchBar) {
-        viewModel.getItems(text: searchBar.text!)
+        searchText = searchBar.text!
+        getItems(text: searchText)
     }
 }
 

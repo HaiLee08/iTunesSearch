@@ -17,13 +17,6 @@ public struct URLParameterEncoder: ParameterEncoder {
                                              resolvingAgainstBaseURL: false), !parameters.isEmpty {
             
             urlComponents.queryItems = [URLQueryItem]()
-            
-            //TODO: Dışarı al
-//            for (key,value) in parameters {
-//                let queryItem = URLQueryItem(name: key,
-//                                             value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
-//                urlComponents.queryItems?.append(queryItem)
-//            }
             urlComponents.queryItems = queryComponents(parameters: parameters)
             urlRequest.url = urlComponents.url
         } else {
