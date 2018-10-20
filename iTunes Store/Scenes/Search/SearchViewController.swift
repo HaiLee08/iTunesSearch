@@ -27,6 +27,7 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
     private var searchText: String = ""
     private var viewModel = SearchViewModel()
     private var dataSource: SearchesDataSource!
+    private var mediaType: MediaType = .all
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,8 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
         let filterView = FilterView.loadFromNib()
         filterView.show()
         filterView.didTapOk = { mediaType in
-            self.getItems(text: self.searchText, media: mediaType)
+            self.mediaType = mediaType
+            self.getItems()
         }
     }
     
@@ -58,8 +60,8 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
         self.navigationItem.title = C.STRING.TITLE.search
     }
     
-    func getItems(text: String, media: MediaType = .all) {
-        viewModel.getItems(text: searchBar.text!, media: media)
+    func getItems() {
+        viewModel.getItems(text: searchBar.text!, media: mediaType)
     }
     
     func bindViewModel() {
@@ -140,7 +142,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     @objc func didEndEditing(searchBar: UISearchBar) {
         searchText = searchBar.text!
-        getItems(text: searchText)
+        getItems()
     }
 }
 

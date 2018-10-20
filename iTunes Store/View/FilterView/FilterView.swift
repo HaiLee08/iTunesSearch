@@ -47,9 +47,22 @@ class FilterView: UIView, UIGestureRecognizerDelegate, NibLoadable {
     }
     
     @IBAction func buttonsFilterTapped(_ button: UIButton) {
-//        if let index = buttonCollection.index(where: { $0 === button }) {
-            mediaType = .music
-//        }
+        updateButtonsColor(selectedButton: button)
+        if let index = buttonCollection.index(where: { $0 === button }) {
+            if index == 0 { mediaType = .movie }
+            else if index == 1 { mediaType = .podcast }
+            else if index == 2 { mediaType = .music }
+            else { mediaType = .all }
+        }
+    }
+    
+    func updateButtonsColor(selectedButton: UIButton) {
+        buttonCollection.forEach { (button) in
+            button.borderColor = UIColor(white: 0.4, alpha: 1)
+            button.setTitleColor(UIColor(white: 0.4, alpha: 1), for: .normal)
+        }
+        selectedButton.borderColor = UIColor(white: 0.9, alpha: 1)
+        selectedButton.setTitleColor(UIColor(white: 0.9, alpha: 1), for: .normal)
     }
 }
 
