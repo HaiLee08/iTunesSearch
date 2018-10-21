@@ -37,7 +37,16 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     }
     
     override func handleRightButton() {
-        
+        presentAlertWithTitle(message: "Bu içerik bir daha gösterilmeyecektir.", options: "Sil", "Vazgeç") { (action) in
+            switch(action) {
+            case 0:
+                Preferences.setRemovedItem(with: self.viewModel.detailModel.trackId)
+                break
+            case 1: break
+            default:
+                break
+            }
+        }
     }
     
     //MARK: Self
@@ -62,3 +71,6 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     }
     
 }
+
+
+

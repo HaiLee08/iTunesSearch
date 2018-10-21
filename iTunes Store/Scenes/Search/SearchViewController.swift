@@ -44,11 +44,12 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.reloadData()
+        viewModel.removeItemFromListIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationBarColor(color: UIColor(hexString: "171A21")!)
+        navigationBarColor(color: ITunesColor.Dark.mid!)
     }
     
     override func viewDidLayoutSubviews() {

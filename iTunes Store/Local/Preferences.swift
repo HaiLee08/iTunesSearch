@@ -19,26 +19,43 @@ import Foundation
 
 class Preferences {
     private static let visitedItemKey = "visitedItemKey"
-    
+    private static let removedItemKey = "removedItemKey"
+
     static func setVisitedItem(with id: UInt) {
-        var visitedModels = getVisitedItemIfExist()
-        visitedModels.append(id)
-        UserDefaults.standard.set(visitedModels, forKey: visitedItemKey)
+        setItem(with: id, key: visitedItemKey)
     }
     
-    private static func getVisitedItemIfExist() -> [UInt] {
-        if let visitedModels = getVisitedItems() {
+    static func getVisitedItems() -> [UInt]? {
+        return getItems(key: visitedItemKey)
+    }
+    
+    static func setRemovedItem(with id: UInt) {
+        setItem(with: id, key: removedItemKey)
+    }
+    
+    static func getRemovedItems() -> [UInt]? {
+        return getItems(key: removedItemKey)
+    }
+    
+    private static func setItem(with id: UInt, key: String) {
+        var visitedModels = getVisitedItemIfExist(key: key)
+        visitedModels.append(id)
+        UserDefaults.standard.set(visitedModels, forKey: key)
+    }
+    
+    private static func getItems(key: String) -> [UInt]? {
+        if let visitedModels = UserDefaults.standard.array(forKey: key) {
+            return visitedModels as? [UInt]
+        }
+        return nil
+    }
+    
+    private static func getVisitedItemIfExist(key: String) -> [UInt] {
+        if let visitedModels = getItems(key: key) {
             return visitedModels
         } else {
             return [UInt]()
         }
-    }
-    
-    static func getVisitedItems() -> [UInt]? {
-        if let visitedModels = UserDefaults.standard.array(forKey: visitedItemKey) {
-            return visitedModels as? [UInt]
-        }
-        return nil
     }
 }
 

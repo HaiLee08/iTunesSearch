@@ -48,11 +48,6 @@ class SearchViewModel {
         return nil
     }
     
-    private func getVisitedItems() -> [UInt]? {
-        guard let visitedItems = Preferences.getVisitedItems() else { return nil }
-        return visitedItems
-    }
-    
     func isVisitedBefore(index: Int) -> Bool{
         if let currentItem = itemAtIndex(index), let visitedItems = Preferences.getVisitedItems() {
             if visitedItems.contains(currentItem.trackId) {
@@ -64,6 +59,13 @@ class SearchViewModel {
         return false
     }
     
+    func removeItemFromListIfNeeded() {
+        guard let removedItems = Preferences.getRemovedItems() else { return }
+        state.items = state.items.filter { !removedItems.contains($0.trackId) }
+//        print(willBeRemovedItems)
+        self.onChange?(.items)
+        
+    }
 }
 
 
@@ -75,6 +77,7 @@ extension SearchViewModel {
         NetworkManager.shared.search(text: text, media: media,completion: { (result) in
             self.onChange?(self.state.setFetching(fetching: false))
             self.onChange?(self.state.setItems(result.results))
+            self.removeItemFromListIfNeeded()
         }) { (error) in
             self.onChange?(.error(error))
             self.onChange?(self.state.setFetching(fetching: false))

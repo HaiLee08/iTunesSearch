@@ -18,9 +18,9 @@
 		052EB3B0217BD0A70067CBCC /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3AF217BD0A70067CBCC /* DetailViewModel.swift */; };
 		052EB3B3217BE4060067CBCC /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3B2217BE4050067CBCC /* Preferences.swift */; };
 		052EB3B5217C939A0067CBCC /* UserDefault+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3B4217C939A0067CBCC /* UserDefault+Utilities.swift */; };
-		052EB3B7217CA7F70067CBCC /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3B6217CA7F70067CBCC /* DetailModel.swift */; };
 		052EB3B9217CD8500067CBCC /* Instantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3B8217CD8500067CBCC /* Instantiatable.swift */; };
 		052EB3BB217D01100067CBCC /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3BA217D01100067CBCC /* UIImage+Utilities.swift */; };
+		052EB3BD217D13D30067CBCC /* UIViewController+AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3BC217D13D30067CBCC /* UIViewController+AlertView.swift */; };
 		056C72D12174D5EC00308E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C72D02174D5EC00308E3B /* AppDelegate.swift */; };
 		056C72D62174D5EC00308E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056C72D42174D5EC00308E3B /* Main.storyboard */; };
 		056C72D82174D5ED00308E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056C72D72174D5ED00308E3B /* Assets.xcassets */; };
@@ -62,9 +62,9 @@
 		052EB3AF217BD0A70067CBCC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		052EB3B2217BE4050067CBCC /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		052EB3B4217C939A0067CBCC /* UserDefault+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefault+Utilities.swift"; sourceTree = "<group>"; };
-		052EB3B6217CA7F70067CBCC /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		052EB3B8217CD8500067CBCC /* Instantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instantiatable.swift; sourceTree = "<group>"; };
 		052EB3BA217D01100067CBCC /* UIImage+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
+		052EB3BC217D13D30067CBCC /* UIViewController+AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertView.swift"; sourceTree = "<group>"; };
 		056C72CD2174D5EC00308E3B /* iTunes Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTunes Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056C72D02174D5EC00308E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056C72D52174D5EC00308E3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -228,6 +228,7 @@
 		056C72F22174D67900308E3B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				052EB3BC217D13D30067CBCC /* UIViewController+AlertView.swift */,
 				056C736A21768F9500308E3B /* UIImageView+Download.swift */,
 				052EB3BA217D01100067CBCC /* UIImage+Utilities.swift */,
 				056C72F32174D67900308E3B /* NSObject+ClassName.swift */,
@@ -311,7 +312,6 @@
 		056C73052174D67900308E3B /* ApplicationModel */ = {
 			isa = PBXGroup;
 			children = (
-				052EB3B6217CA7F70067CBCC /* DetailModel.swift */,
 			);
 			path = ApplicationModel;
 			sourceTree = "<group>";
@@ -411,8 +411,8 @@
 				056C7371217697AE00308E3B /* SearchBar+TextField.swift in Sources */,
 				056C73152174D67900308E3B /* NetworkManager.swift in Sources */,
 				056C73172174D67900308E3B /* HTTPTask.swift in Sources */,
+				052EB3BD217D13D30067CBCC /* UIViewController+AlertView.swift in Sources */,
 				052EB3BB217D01100067CBCC /* UIImage+Utilities.swift in Sources */,
-				052EB3B7217CA7F70067CBCC /* DetailModel.swift in Sources */,
 				052EB3B0217BD0A70067CBCC /* DetailViewModel.swift in Sources */,
 				052EB3A221778B990067CBCC /* NibLoadable.swift in Sources */,
 				056C73142174D67900308E3B /* URLParameterEncoding.swift in Sources */,
