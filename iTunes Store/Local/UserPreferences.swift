@@ -8,20 +8,11 @@
 
 import Foundation
 
-//class VisitedItemModel: Codable {
-//    var trackId: UInt = 0
-//
-//    init(trackId: UInt) {
-//        self.trackId = trackId
-//    }
-//}
-
-
-class Preferences {
+class UserPreferences {
     private static let visitedItemKey = "visitedItemKey"
     private static let removedItemKey = "removedItemKey"
 
-    static func setVisitedItem(with id: UInt) {
+    static func setItemAsVisited(with id: UInt) {
         setItem(with: id, key: visitedItemKey)
     }
     
@@ -37,6 +28,7 @@ class Preferences {
         return getItems(key: removedItemKey)
     }
     
+    // Private
     private static func setItem(with id: UInt, key: String) {
         var visitedModels = getVisitedItemIfExist(key: key)
         visitedModels.append(id)
@@ -54,7 +46,7 @@ class Preferences {
         if let visitedModels = getItems(key: key) {
             return visitedModels
         } else {
-            return [UInt]()
+            return []
         }
     }
 }

@@ -16,7 +16,8 @@ public struct URLParameterEncoder: ParameterEncoder {
         if var urlComponents = URLComponents(url: url,
                                              resolvingAgainstBaseURL: false), !parameters.isEmpty {
             
-            urlComponents.queryItems = [URLQueryItem]()
+            let queryItems: [URLQueryItem] = []
+            urlComponents.queryItems = queryItems
             urlComponents.queryItems = queryComponents(parameters: parameters)
             urlRequest.url = urlComponents.url
         } else {

@@ -8,17 +8,21 @@
 import Foundation
 import UIKit
 
-let SCREEN_WIDTH = UIScreen.main.bounds.width
-let SCREEN_HEIGHT = UIScreen.main.bounds.height
+let screenWidth = UIScreen.main.bounds.width
+let screenHeight = UIScreen.main.bounds.height
 
 enum C {
-    enum STRING {
-        enum TITLE {
-            static let search = "Search"
-            static let detail = "Detay"
-        }
+    enum sceneTitle {
+        static let search = "Search"
+        static let detail = "Detail"
     }
-    enum StoryboardName {
+    enum string {
+        static let alertMessageForItemRemoved = "Bu içerik bir daha gösterilmeyecektir."
+        static let remove = "Sil"
+        static let cancel = "Vazgeç"
+
+    }
+    enum storyboard {
         static let main = "Main"
     }
 }

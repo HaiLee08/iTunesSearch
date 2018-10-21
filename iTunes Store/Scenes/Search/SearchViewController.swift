@@ -10,15 +10,20 @@ import UIKit
 
 class SearchViewController: BaseViewController, StoryboardLoadable {
     
-    static var defaultStoryboardName = C.StoryboardName.main
+    // MARK: StoryboardLoadable Protocol
+    static var defaultStoryboardName = C.storyboard.main
 
     private enum Const {
-        static let interitemSpacing = 16
-        static let lineSpacing = 20
-        static var numberOfItemsPerRow = 1.0
+        static let interitemSpacing: CGFloat = 16.0
+        static let rowHeight: CGFloat = 120.0
+        static let lineSpacing: CGFloat = 20.0
+        static var numberOfItemsPerRow: CGFloat = 1.0
+        
+        static let minSearchTextCount = 3
+        static let delayForSearching: TimeInterval = 1
     }
     
-    //MARK: Outlets
+    // MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -28,11 +33,13 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
     private var viewModel = SearchViewModel()
     private var dataSource: SearchesDataSource!
     private var mediaType: MediaType = .all
+    private let filterView = FilterView.loadFromNib()
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addRightNavButton(image: #imageLiteral(resourceName: "ic_filter"))
-        selfConfig()
+        setupUI()
         bindViewModel()
         
         view.addSubview(viewNoResult)
@@ -49,7 +56,9 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationBarColor(color: ITunesColor.Dark.mid!)
+        if let color = SytleGuide.color.mid {
+            applyNavigationBarColor(color: color)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -57,53 +66,46 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
         viewNoResult.center = collectionView.center
     }
     
-    override func handleRightButton() {
-        let filterView = FilterView.loadFromNib()
+    override func rightBarButtonTapped() {
         filterView.show()
-        filterView.didTapOk = { mediaType in
+        filterView.didTapOk = { [weak self] mediaType in
+            guard let self = self else { return }
             self.mediaType = mediaType
-            self.getItems()
+            self.fetchItems()
         }
     }
     
     //MARK: Self
-    func selfConfig() {
-        self.navigationItem.title = C.STRING.TITLE.search
+    func setupUI() {
+        self.navigationItem.title = C.sceneTitle.search
     }
     
-    func getItems() {
+    func fetchItems() {
         viewModel.getItems(text: searchText, media: mediaType)
     }
     
     func bindViewModel() {
-        viewModel.onChange = viewModelStateChange
+        viewModel.onChange = viewModelStateChanged
     }
     
-    func viewModelStateChange(change: SearchViewState.Change) {
+    func viewModelStateChanged(change: SearchViewState.Change) {
         switch change {
         case .error:
+            // TODO:
             break
         case .items:
             collectionView.reloadData()
-            updateNoResultView()
+            viewNoResult.isHidden = !viewModel.state.items.isEmpty
             break
-        case .fetchStateChanged(let fetching):
-            activityIndicator.isHidden = !fetching
+        case .fetchStateChanged(let isFetching):
+            activityIndicator.isHidden = !isFetching
             viewNoResult.isHidden = viewModel.state.fetching
             break
         }
     }
-    
-    func updateNoResultView()  {
-        if viewModel.state.items.count == 0{
-            viewNoResult.isHidden = false
-        } else {
-            viewNoResult.isHidden = true
-        }
-    }
 }
 
-// MARK: Orientation
+// MARK: Orientation Handling
 extension SearchViewController {
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         if UIDevice.current.orientation.isLandscape {
@@ -117,34 +119,33 @@ extension SearchViewController {
 // MARK: CollectionView
 extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if viewModel.isVisitedBefore(index: indexPath.row) {
-            (cell as? SearchCell)?.visitedItem()
+        if let searchCell = (cell as? SearchCell), viewModel.isVisitedBefore(index: indexPath.row) {
+            searchCell.setItemAsVisited()
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let searchModel = viewModel.itemAtIndex(indexPath.row)
         let model = DetailViewModel(with: searchModel!)
-        let detailVC = DetailViewController.instantiate(model: model)
+        let detailVC = DetailViewController.instantiate(with: model)
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (collectionView.bounds.size.width - CGFloat(Const.interitemSpacing) * CGFloat(Const.numberOfItemsPerRow - 1.0)) / CGFloat(Const.numberOfItemsPerRow) - 1.0
-        return CGSize(width: cellWidth, height: 120)
+        let cellWidth = (collectionView.bounds.size.width - Const.interitemSpacing * (Const.numberOfItemsPerRow - 1.0)) / Const.numberOfItemsPerRow - 1.0
+        return CGSize(width: cellWidth, height: Const.rowHeight)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(Const.lineSpacing)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(Const.interitemSpacing)
     }
 }
-
 
 extension SearchViewController: UISearchBarDelegate, UITextFieldDelegate {
     
@@ -153,26 +154,28 @@ extension SearchViewController: UISearchBarDelegate, UITextFieldDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if let searchText = searchBar.text, searchText.count > 2  {
+        if let searchText = searchBar.text, searchText.count >= Const.minSearchTextCount {
             textDidChange(searchBar: searchBar)
         }
     }
     
     func textDidChange(searchBar: UISearchBar) {
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(didEndEditing), object: searchBar)
-        self.perform(#selector(didEndEditing), with: searchBar, afterDelay: 1)
+        self.perform(#selector(didEndEditing), with: searchBar, afterDelay: Const.delayForSearching)
     }
     
     @objc func didEndEditing(searchBar: UISearchBar) {
-        searchText = searchBar.text!
-        getItems()
+        if let text = searchBar.text {
+            searchText = text
+        }
+        fetchItems()
     }
 }
 
 
 extension SearchViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let y = -1 * scrollView.contentOffset.y
+        let y = -(1 * scrollView.contentOffset.y)
         let transform = CGAffineTransform.identity.translatedBy(x: 0, y: y)
         searchBar.transform = transform
     }

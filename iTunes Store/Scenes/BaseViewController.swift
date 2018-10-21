@@ -10,10 +10,9 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     //MARK: NavigationItems
@@ -22,30 +21,31 @@ class BaseViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image,
                                                             style: .plain,
                                                             target: self,
-                                                            action: #selector(handleRightButton))
+                                                            action: #selector(rightBarButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = Color.white
     }
     
-    @objc func handleRightButton()  { }
+    @objc func rightBarButtonTapped()  { }
     
     //MARK: Back button
     func addBackNavButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back"),
                                                            style: .plain,
                                                            target: self,
-                                                           action: #selector(handleBackButton))
+                                                           action: #selector(backBarButtonTapped))
         navigationItem.leftBarButtonItem?.tintColor = Color.white
     }
     
-    @objc func handleBackButton()  {
+    @objc func backBarButtonTapped()  {
         self.navigationController?.popViewController(animated: true)
     }
     
-    func navigationBarColor(color : UIColor) {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: color), for: .default)
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.backgroundColor = .clear
+    func applyNavigationBarColor(color : UIColor) {
+        guard let navigationController = navigationController else { return }
+        navigationController.navigationBar.setBackgroundImage(UIImage(color: color), for: .default)
+        navigationController.view.backgroundColor = .clear
+        navigationController.navigationBar.shadowImage = UIImage()
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.backgroundColor = .clear
     }
 }

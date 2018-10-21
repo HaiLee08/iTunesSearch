@@ -16,13 +16,13 @@ struct SearchViewState {
 extension SearchViewState {
     enum Change {
         case items
-        case fetchStateChanged(fetching: Bool)
+        case fetchStateChanged(isFetching: Bool)
         case error(String)
     }
     
     mutating func setFetching(fetching: Bool) -> Change {
         self.fetching = fetching
-        return .fetchStateChanged(fetching: fetching)
+        return .fetchStateChanged(isFetching: fetching)
     }
     
     mutating func setItems(_ items: [SearchModel]) -> Change {
@@ -33,10 +33,9 @@ extension SearchViewState {
 }
 
 class SearchViewModel {
-    fileprivate(set) var state = SearchViewState()
+    private(set) var state = SearchViewState()
     var onChange: ((SearchViewState.Change) -> Void)?
-    
-    //MARK: DataSource
+
     var numberOfItems: Int {
         return state.items.count
     }
@@ -49,22 +48,18 @@ class SearchViewModel {
     }
     
     func isVisitedBefore(index: Int) -> Bool{
-        if let currentItem = itemAtIndex(index), let visitedItems = Preferences.getVisitedItems() {
-            if visitedItems.contains(currentItem.trackId) {
-                return true
-            } else {
-                return false
-            }
-        }
-        return false
+        guard
+            let currentItem = itemAtIndex(index),
+            let visitedItems = UserPreferences.getVisitedItems(),
+            visitedItems.contains(currentItem.trackId)
+            else { return false }
+        return true
     }
     
     func removeItemFromListIfNeeded() {
-        guard let removedItems = Preferences.getRemovedItems() else { return }
+        guard let removedItems = UserPreferences.getRemovedItems() else { return }
         state.items = state.items.filter { !removedItems.contains($0.trackId) }
-//        print(willBeRemovedItems)
         self.onChange?(.items)
-        
     }
 }
 

@@ -13,7 +13,6 @@ struct SearchGroup: Decodable {
     let results: [SearchModel]
 }
 
-
 struct SearchModel: Decodable {
     let trackId: UInt
     let artistName: String

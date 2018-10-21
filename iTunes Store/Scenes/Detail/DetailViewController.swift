@@ -10,37 +10,50 @@ import UIKit
 
 class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatable {
     
-    static var defaultStoryboardName = C.StoryboardName.main
-    
-    var viewModel: DetailViewModel!
-    
+    static var defaultStoryboardName = C.storyboard.main
+  
+    // MARK: Properties
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imageViewItem: UIImageView!
     @IBOutlet weak var imageViewBackground: UIImageView!
+    var viewModel: DetailViewModel!
     
-    static func instantiate(model: DetailViewModel) -> Self {
+    // MARK: Instantiate
+    static func instantiate(with model: DetailViewModel) -> Self {
         let viewController = loadFromStoryboard()
         viewController.viewModel = model
         return viewController
     }
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addBackNavButton()
         addRightNavButton(image: #imageLiteral(resourceName: "cancelIcon"))
         setupUI()
-        selfConfig()
         
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
     }
     
-    override func handleRightButton() {
-        presentAlertWithTitle(message: "Bu içerik bir daha gösterilmeyecektir.", options: "Sil", "Vazgeç") { (action) in
-            switch(action) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UserPreferences.setItemAsVisited(with: viewModel.detailModel.trackId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyNavigationBarColor(color: .clear)
+    }
+    
+    override func rightBarButtonTapped() {
+        presentAlertWithTitle(message: C.string.alertMessageForItemRemoved,
+                              options: C.string.remove, C.string.cancel ) { [weak self] (action) in
+            guard let self = self else { return }
+            switch(action) { 
             case 0:
-                Preferences.setRemovedItem(with: self.viewModel.detailModel.trackId)
+                UserPreferences.setRemovedItem(with: self.viewModel.detailModel.trackId)
                 break
             case 1: break
             default:
@@ -49,26 +62,15 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
         }
     }
     
-    //MARK: Self
-    func selfConfig() {
-        self.navigationItem.title = C.STRING.TITLE.detail
-    }
-    
+    // MARK: Self
     func setupUI()  {
+        self.navigationItem.title = C.sceneTitle.detail
         labelTitle.text = viewModel.detailModel.trackCensoredName
-        imageViewItem.downloaded(from: viewModel.detailModel.artworkUrl100)
-        imageViewBackground.downloaded(from: viewModel.detailModel.artworkUrl100)
+        imageViewItem.downloadImage(from: viewModel.detailModel.artworkUrl100)
+        imageViewBackground.downloadImage(from: viewModel.detailModel.artworkUrl100)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        Preferences.setVisitedItem(with: viewModel.detailModel.trackId)
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationBarColor(color: .clear)
-    }
     
 }
 

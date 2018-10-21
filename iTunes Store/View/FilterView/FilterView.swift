@@ -10,33 +10,48 @@ import UIKit
 
 class FilterView: UIView, UIGestureRecognizerDelegate, NibLoadable {
     
-    @IBOutlet var buttonCollection: [UIButton]!
-    
+    // MARK: Private Constant
     private enum Const {
         static let height: CGFloat = 200
     }
+    
+    // MARK: Properties
+    @IBOutlet var buttonCollection: [UIButton]!
     
     var didTapOk: ((_ mediaType: MediaType) -> Void)? = nil
     var isAnimating = false
     var isOpen = false
     private var mediaType: MediaType = .all
+    lazy private var backgroundView: UIView = createBackgroundView()
     
-    private var backgroundView: UIView = {
-        let backgroundView = UIView(frame: UIScreen.main.bounds)
-        backgroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-        return backgroundView
-    }()
-    
+    // MARK: Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        frame = CGRect(x: 0, y: SCREEN_HEIGHT, width: SCREEN_WIDTH, height: Const.height)
+        frame = CGRect(x: 0, y: screenHeight, width: screenWidth, height: Const.height)
         addBackgroundGesture()
     }
     
-    func addBackgroundGesture() {
+    // MARK: UI
+    func createBackgroundView() -> UIView {
+        let backgroundView = UIView(frame: UIScreen.main.bounds)
+        backgroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        return backgroundView
+    }
+    
+    // MARK: Private
+    private func addBackgroundGesture() {
         let tabGesture = UITapGestureRecognizer(target: self, action: #selector(hide))
         tabGesture.delegate = self
         backgroundView.addGestureRecognizer(tabGesture)
+    }
+    
+    private func updateButtonsColor(selectedButton: UIButton) {
+        buttonCollection.forEach { (button) in
+            button.borderColor = UIColor(white: 0.4, alpha: 1)
+            button.setTitleColor(UIColor(white: 0.4, alpha: 1), for: .normal)
+        }
+        selectedButton.borderColor = UIColor(white: 0.9, alpha: 1)
+        selectedButton.setTitleColor(UIColor(white: 0.9, alpha: 1), for: .normal)
     }
     
     // MARK: Actions
@@ -56,21 +71,15 @@ class FilterView: UIView, UIGestureRecognizerDelegate, NibLoadable {
         }
     }
     
-    func updateButtonsColor(selectedButton: UIButton) {
-        buttonCollection.forEach { (button) in
-            button.borderColor = UIColor(white: 0.4, alpha: 1)
-            button.setTitleColor(UIColor(white: 0.4, alpha: 1), for: .normal)
-        }
-        selectedButton.borderColor = UIColor(white: 0.9, alpha: 1)
-        selectedButton.setTitleColor(UIColor(white: 0.9, alpha: 1), for: .normal)
-    }
+    
 }
+
 
 extension FilterView {
 
     func show(completion: (() -> Void)? = nil) {
         if isAnimating { return }
-        addSubviewSelf()
+        addSelfToWindow()
         
         var finalFrame = frame
         finalFrame.size.height = Const.height
@@ -85,7 +94,7 @@ extension FilterView {
                        options: .curveLinear,
                        animations: {
                         
-                        self.frame = CGRect(x: 0, y: SCREEN_HEIGHT - Const.height, width: SCREEN_WIDTH, height: Const.height)
+                        self.frame = CGRect(x: 0, y: screenHeight - Const.height, width: screenWidth, height: Const.height)
                         self.layoutIfNeeded()
                         
         }) { (finished) in
@@ -101,7 +110,7 @@ extension FilterView {
         if isOpen {
             isAnimating = true
             var finalFrame = frame
-            finalFrame.origin.y = SCREEN_HEIGHT
+            finalFrame.origin.y = screenHeight
             
             UIView.animate(withDuration: 0.2,
                            animations: {
@@ -122,8 +131,9 @@ extension FilterView {
         hideView()
     }
     
-    func addSubviewSelf()  {
+    func addSelfToWindow()  {
         backgroundView.addSubview(self)
         UIApplication.shared.keyWindow?.addSubview(backgroundView)
     }
 }
+

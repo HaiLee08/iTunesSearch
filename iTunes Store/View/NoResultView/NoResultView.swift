@@ -12,7 +12,6 @@ class NoResultView: UIView, NibLoadable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

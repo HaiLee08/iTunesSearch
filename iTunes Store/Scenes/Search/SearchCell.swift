@@ -17,12 +17,12 @@ class SearchCell: UICollectionViewCell {
         didSet {
             if let item = item {
                 labelTitle?.text = item.trackCensoredName
-                imageViewCoverImage?.downloaded(from: item.artworkUrl100)
+                imageViewCoverImage?.downloadImage(from: item.artworkUrl100)
             }
         }
     }
     
-    func visitedItem() {
+    func setItemAsVisited() {
         labelTitle?.textColor = UIColor(white: 0.4, alpha: 1)
     }
     

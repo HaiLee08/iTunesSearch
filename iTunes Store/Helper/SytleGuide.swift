@@ -8,9 +8,8 @@
 import Foundation
 import UIKit
 
-struct ITunesColor {
-
-    struct Dark {
+struct SytleGuide {
+    enum color {
         static let dark = UIColor(hexString: "101319")
         static let mid = UIColor(hexString: "171A21")
         static let light = UIColor(white: 230.0/255.0, alpha: 1)
