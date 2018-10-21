@@ -47,6 +47,23 @@ class SearchViewModel {
         }
         return nil
     }
+    
+    private func getVisitedItems() -> [UInt]? {
+        guard let visitedItems = Preferences.getVisitedItems() else { return nil }
+        return visitedItems
+    }
+    
+    func isVisitedBefore(index: Int) -> Bool{
+        if let currentItem = itemAtIndex(index), let visitedItems = Preferences.getVisitedItems() {
+            if visitedItems.contains(currentItem.trackId) {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
+    }
+    
 }
 
 

@@ -22,6 +22,15 @@ class SearchCell: UICollectionViewCell {
         }
     }
     
+    func visitedItem() {
+        labelTitle?.textColor = UIColor(white: 0.4, alpha: 1)
+    }
+    
+    override func prepareForReuse() {
+        imageViewCoverImage?.image = #imageLiteral(resourceName: "placeholderImage")
+        labelTitle?.textColor = .white
+    }
+    
 }
 
 

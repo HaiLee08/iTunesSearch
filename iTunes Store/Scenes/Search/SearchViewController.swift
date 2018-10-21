@@ -41,6 +41,11 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
         collectionView.dataSource = dataSource
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         viewNoResult.center = collectionView.center
@@ -61,7 +66,7 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
     }
     
     func getItems() {
-        viewModel.getItems(text: searchBar.text!, media: mediaType)
+        viewModel.getItems(text: searchText, media: mediaType)
     }
     
     func bindViewModel() {
@@ -105,9 +110,17 @@ extension SearchViewController {
 
 // MARK: CollectionView
 extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if viewModel.isVisitedBefore(index: indexPath.row) {
+            (cell as? SearchCell)?.visitedItem()
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        let searchModel = viewModel.itemAtIndex(indexPath.row)
+        let model = DetailViewModel(with: searchModel!)
+        let detailVC = DetailViewController.instantiate(model: model)
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
@@ -127,7 +140,11 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-extension SearchViewController: UISearchBarDelegate {
+extension SearchViewController: UISearchBarDelegate, UITextFieldDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let searchText = searchBar.text, searchText.count > 2  {

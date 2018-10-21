@@ -55,7 +55,7 @@
                                                                 <constraint firstItem="BY1-9V-FU5" firstAttribute="top" secondItem="JvK-0R-tDB" secondAttribute="top" constant="10" id="xh4-Y5-ne3"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TkK-Vy-ezm">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TkK-Vy-ezm">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             <color key="backgroundColor" white="0.1755539020830687" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -99,7 +99,7 @@
                                 <rect key="frame" x="10" y="0.0" width="355" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="1"/>
-                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
                                 <connections>
                                     <outlet property="delegate" destination="DCe-k7-6vz" id="ueI-q1-d5g"/>
                                 </connections>
@@ -113,9 +113,9 @@
                             <constraint firstAttribute="bottom" secondItem="uqs-VE-tpe" secondAttribute="bottom" id="6Hd-BA-zhV"/>
                             <constraint firstItem="4EA-JD-OHI" firstAttribute="centerX" secondItem="wEu-pc-d39" secondAttribute="centerX" id="9k8-LJ-Brg"/>
                             <constraint firstItem="C8Z-Wv-USg" firstAttribute="trailing" secondItem="ZyG-rl-ve4" secondAttribute="trailing" constant="10" id="XPq-ZS-qbm"/>
-                            <constraint firstItem="ZyG-rl-ve4" firstAttribute="top" secondItem="C8Z-Wv-USg" secondAttribute="top" id="Xx1-Q5-zrP"/>
+                            <constraint firstItem="ZyG-rl-ve4" firstAttribute="top" secondItem="wEu-pc-d39" secondAttribute="top" id="Xx1-Q5-zrP"/>
                             <constraint firstItem="uqs-VE-tpe" firstAttribute="leading" secondItem="C8Z-Wv-USg" secondAttribute="leading" constant="20" id="YFo-ER-i00"/>
-                            <constraint firstItem="uqs-VE-tpe" firstAttribute="top" secondItem="C8Z-Wv-USg" secondAttribute="top" id="bO7-Zc-jbv"/>
+                            <constraint firstItem="uqs-VE-tpe" firstAttribute="top" secondItem="wEu-pc-d39" secondAttribute="top" id="bO7-Zc-jbv"/>
                             <constraint firstItem="uqs-VE-tpe" firstAttribute="trailing" secondItem="C8Z-Wv-USg" secondAttribute="trailing" id="e9B-PD-B0d"/>
                             <constraint firstItem="4EA-JD-OHI" firstAttribute="centerY" secondItem="wEu-pc-d39" secondAttribute="centerY" id="eUy-oT-i2X"/>
                             <constraint firstItem="ZyG-rl-ve4" firstAttribute="leading" secondItem="C8Z-Wv-USg" secondAttribute="leading" constant="10" id="uGB-Oj-VhK"/>
@@ -133,14 +133,42 @@
             </objects>
             <point key="canvasLocation" x="852" y="116.49175412293854"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="nvz-sd-6T7">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="6Eh-8X-qVD" customClass="DetailViewController" customModule="iTunes_Store" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2fX-ZE-45G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkn-c3-hYd">
+                                <rect key="frame" x="122" y="172" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="d1f-UO-Xrn"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="gkn-c3-hYd" id="SiK-OM-z6A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bBQ-eK-v3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1543" y="116"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="4sI-vd-ksP">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="l6p-5T-nK0" customClass="NavigationController" customModule="iTunes_Store" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="Vhj-be-af3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="Vhj-be-af3">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.090196078431372548" green="0.10196078431372549" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.090196078431372548" green="0.10196078431372549" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">

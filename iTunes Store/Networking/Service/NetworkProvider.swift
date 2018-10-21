@@ -25,7 +25,7 @@ class NetworkProvider<EndPoint: EndPointType>: NetworkRouter {
         let session = URLSession.shared
         do {
             let request = try self.buildRequest(from: target)
-            print("URL: \(request.url?.absoluteString ?? "")")
+            print("Request URL: \(request.url?.absoluteString ?? "")")
             task = session.dataTask(with: request, completionHandler: { data, response, error in
                 completion(data, response, error)
             })

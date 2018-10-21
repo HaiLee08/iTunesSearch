@@ -15,11 +15,13 @@ struct SearchGroup: Decodable {
 
 
 struct SearchModel: Decodable {
+    let trackId: UInt
     let artistName: String
     let artworkUrl100: String
     let trackCensoredName: String
    
     enum CodingKeys: String, CodingKey {
+        case trackId
         case artistName
         case artworkUrl100
         case trackCensoredName
@@ -30,6 +32,6 @@ struct SearchModel: Decodable {
         artistName = try values.decodeIfPresent(String.self, forKey: .artistName) ?? ""
         artworkUrl100 = try values.decodeIfPresent(String.self, forKey: .artworkUrl100) ?? ""
         trackCensoredName = try values.decodeIfPresent(String.self, forKey: .trackCensoredName) ?? ""
-
+        trackId = try values.decodeIfPresent(UInt.self, forKey: .trackId) ?? 0
     }
 }

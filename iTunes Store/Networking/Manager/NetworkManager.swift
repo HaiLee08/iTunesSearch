@@ -14,8 +14,8 @@ struct NetworkManager {
 
     let provider = NetworkProvider<iTunesEndPoint>()
     
-    func search(text: String, media: MediaType = .all, completion: @escaping ClosureType<SearchGroup>, failure: @escaping Failure) {
-        provider.request(.search(term: text, media: media), model: SearchGroup.self, completion: completion, failure: failure)
+    func search(text: String, media: MediaType = .all, limit: Int = 100, completion: @escaping ClosureType<SearchGroup>, failure: @escaping Failure) {
+        provider.request(.search(term: text, media: media, limit: limit), model: SearchGroup.self, completion: completion, failure: failure)
     }
     
     
