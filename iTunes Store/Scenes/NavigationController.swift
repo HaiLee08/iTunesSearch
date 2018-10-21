@@ -12,8 +12,8 @@ class NavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationBar.shadowImage = UIImage()
+        self.interactivePopGestureRecognizer?.isEnabled = true
+        self.interactivePopGestureRecognizer?.delegate = nil
     }
     
 }

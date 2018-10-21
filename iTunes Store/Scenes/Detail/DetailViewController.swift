@@ -14,7 +14,9 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     
     var viewModel: DetailViewModel!
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var imageViewItem: UIImageView!
+    @IBOutlet weak var imageViewBackground: UIImageView!
     
     static func instantiate(model: DetailViewModel) -> Self {
         let viewController = loadFromStoryboard()
@@ -24,17 +26,39 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        addBackNavButton()
+        addRightNavButton(image: #imageLiteral(resourceName: "cancelIcon"))
+        setupUI()
+        selfConfig()
+        
         if #available(iOS 11.0, *) {
             navigationItem.largeTitleDisplayMode = .never
         }
+    }
+    
+    override func handleRightButton() {
         
-        label.text = viewModel.detailModel.trackCensoredName
+    }
+    
+    //MARK: Self
+    func selfConfig() {
+        self.navigationItem.title = C.STRING.TITLE.detail
+    }
+    
+    func setupUI()  {
+        labelTitle.text = viewModel.detailModel.trackCensoredName
+        imageViewItem.downloaded(from: viewModel.detailModel.artworkUrl100)
+        imageViewBackground.downloaded(from: viewModel.detailModel.artworkUrl100)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Preferences.setVisitedItem(with: viewModel.detailModel.trackId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarColor(color: .clear)
     }
     
 }

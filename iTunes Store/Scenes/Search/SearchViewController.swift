@@ -46,6 +46,11 @@ class SearchViewController: BaseViewController, StoryboardLoadable {
         collectionView.reloadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarColor(color: UIColor(hexString: "171A21")!)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         viewNoResult.center = collectionView.center

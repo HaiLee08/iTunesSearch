@@ -12,7 +12,8 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
     }
     
     //MARK: NavigationItems
@@ -29,7 +30,7 @@ class BaseViewController: UIViewController {
     
     //MARK: Back button
     func addBackNavButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "ic_filter"),
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back"),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(handleBackButton))
@@ -40,4 +41,11 @@ class BaseViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    func navigationBarColor(color : UIColor) {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: color), for: .default)
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.backgroundColor = .clear
+    }
 }

@@ -15,6 +15,7 @@ enum C {
     enum STRING {
         enum TITLE {
             static let search = "Search"
+            static let detail = "Detay"
         }
     }
     enum StoryboardName {
