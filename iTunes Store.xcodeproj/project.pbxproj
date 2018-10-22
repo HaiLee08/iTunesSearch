@@ -170,13 +170,13 @@
 			isa = PBXGroup;
 			children = (
 				056C72D02174D5EC00308E3B /* AppDelegate.swift */,
-				056C73022174D67900308E3B /* Model */,
-				056C72EC2174D67800308E3B /* View */,
-				056C72E72174D67800308E3B /* Scenes */,
-				056C72F52174D67900308E3B /* Networking */,
-				052EB3B1217BE2AC0067CBCC /* Local */,
 				056C72EF2174D67900308E3B /* Helper */,
+				052EB3B1217BE2AC0067CBCC /* Local */,
+				056C73022174D67900308E3B /* Model */,
+				056C72F52174D67900308E3B /* Networking */,
 				056C72E22174D67800308E3B /* Resources */,
+				056C72E72174D67800308E3B /* Scenes */,
+				056C72EC2174D67800308E3B /* View */,
 			);
 			path = "iTunes Store";
 			sourceTree = "<group>";
@@ -226,10 +226,10 @@
 		056C72EF2174D67900308E3B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				052EB3BE217D231D0067CBCC /* Protocols */,
 				056C72F02174D67900308E3B /* Constants.swift */,
 				056C72F12174D67900308E3B /* SytleGuide.swift */,
 				056C72F22174D67900308E3B /* Extensions */,
+				052EB3BE217D231D0067CBCC /* Protocols */,
 			);
 			path = Helper;
 			sourceTree = "<group>";

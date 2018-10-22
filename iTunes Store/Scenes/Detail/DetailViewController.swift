@@ -16,6 +16,9 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var imageViewItem: UIImageView!
     @IBOutlet weak var imageViewBackground: UIImageView!
+    @IBOutlet weak var labelArtistName: UILabel!
+    @IBOutlet weak var labelCountry: UILabel!
+    @IBOutlet weak var labelDescription: UILabel!
     var viewModel: DetailViewModel!
     
     // MARK: Instantiate
@@ -47,6 +50,7 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
         applyNavigationBarColor(color: .clear)
     }
     
+    // MARK: Actions
     override func rightBarButtonTapped() {
         presentAlertWithTitle(message: C.string.alertMessageForItemRemoved,
                               options: C.string.remove, C.string.cancel ) { [weak self] (action) in
@@ -66,8 +70,16 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     func setupUI()  {
         self.navigationItem.title = C.sceneTitle.detail
         labelTitle.text = viewModel.detailModel.trackCensoredName
+        labelCountry.text = viewModel.detailModel.country
+        labelArtistName.text = viewModel.detailModel.artistName
         imageViewItem.downloadImage(from: viewModel.detailModel.artworkUrl100)
         imageViewBackground.downloadImage(from: viewModel.detailModel.artworkUrl100)
+        if !viewModel.detailModel.longDescript.isEmpty {
+            labelDescription.text = viewModel.detailModel.longDescript
+        } else {
+            labelDescription.text = viewModel.detailModel.descript
+        }
+        
     }
     
     

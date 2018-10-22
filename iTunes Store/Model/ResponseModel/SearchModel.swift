@@ -16,6 +16,9 @@ struct SearchGroup: Decodable {
 struct SearchModel: Decodable {
     let trackId: UInt
     let artistName: String
+    let country: String
+    let longDescript: String
+    let descript: String
     let artworkUrl100: String
     let trackCensoredName: String
    
@@ -24,6 +27,9 @@ struct SearchModel: Decodable {
         case artistName
         case artworkUrl100
         case trackCensoredName
+        case country
+        case longDescript = "longDescription"
+        case descript = "description"
     }
     
     init(from decoder : Decoder) throws {
@@ -32,5 +38,8 @@ struct SearchModel: Decodable {
         artworkUrl100 = try values.decodeIfPresent(String.self, forKey: .artworkUrl100) ?? ""
         trackCensoredName = try values.decodeIfPresent(String.self, forKey: .trackCensoredName) ?? ""
         trackId = try values.decodeIfPresent(UInt.self, forKey: .trackId) ?? 0
+        country = try values.decodeIfPresent(String.self, forKey: .country) ?? ""
+        longDescript = try values.decodeIfPresent(String.self, forKey: .longDescript) ?? ""
+        descript = try values.decodeIfPresent(String.self, forKey: .descript) ?? ""
     }
 }

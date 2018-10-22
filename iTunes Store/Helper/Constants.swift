@@ -17,9 +17,9 @@ enum C {
         static let detail = "Detail"
     }
     enum string {
-        static let alertMessageForItemRemoved = "Bu içerik bir daha gösterilmeyecektir."
-        static let remove = "Sil"
-        static let cancel = "Vazgeç"
+        static let alertMessageForItemRemoved = "This content will not be shown again."
+        static let remove = "Remove"
+        static let cancel = "Cancel"
 
     }
     enum storyboard {
