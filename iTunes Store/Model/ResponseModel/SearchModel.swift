@@ -21,6 +21,7 @@ struct SearchModel: Decodable {
     let descript: String
     let artworkUrl100: String
     let trackCensoredName: String
+    let collectionName: String
    
     enum CodingKeys: String, CodingKey {
         case trackId
@@ -28,6 +29,7 @@ struct SearchModel: Decodable {
         case artworkUrl100
         case trackCensoredName
         case country
+        case collectionName
         case longDescript = "longDescription"
         case descript = "description"
     }
@@ -41,5 +43,6 @@ struct SearchModel: Decodable {
         country = try values.decodeIfPresent(String.self, forKey: .country) ?? ""
         longDescript = try values.decodeIfPresent(String.self, forKey: .longDescript) ?? ""
         descript = try values.decodeIfPresent(String.self, forKey: .descript) ?? ""
+        collectionName = try values.decodeIfPresent(String.self, forKey: .collectionName) ?? ""
     }
 }

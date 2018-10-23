@@ -19,6 +19,8 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
     @IBOutlet weak var labelArtistName: UILabel!
     @IBOutlet weak var labelCountry: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
+    @IBOutlet weak var labelCollectionName: UILabel!
+
     var viewModel: DetailViewModel!
     
     // MARK: Instantiate
@@ -74,6 +76,7 @@ class DetailViewController: BaseViewController, StoryboardLoadable, Instantiatab
         labelArtistName.text = viewModel.detailModel.artistName
         imageViewItem.downloadImage(from: viewModel.detailModel.artworkUrl100)
         imageViewBackground.downloadImage(from: viewModel.detailModel.artworkUrl100)
+        labelCollectionName.text = viewModel.detailModel.collectionName
         if !viewModel.detailModel.longDescript.isEmpty {
             labelDescription.text = viewModel.detailModel.longDescript
         } else {

@@ -20,7 +20,6 @@ enum C {
         static let alertMessageForItemRemoved = "This content will not be shown again."
         static let remove = "Remove"
         static let cancel = "Cancel"
-
     }
     enum storyboard {
         static let main = "Main"
