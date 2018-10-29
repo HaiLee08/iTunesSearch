@@ -91,7 +91,6 @@
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="DCe-k7-6vz" id="FeY-CP-hg3"/>
                                     <outlet property="delegate" destination="DCe-k7-6vz" id="Z6d-Za-W8l"/>
                                 </connections>
                             </collectionView>

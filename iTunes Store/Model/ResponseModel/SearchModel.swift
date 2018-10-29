@@ -14,7 +14,7 @@ struct SearchGroup: Decodable {
 }
 
 struct SearchModel: Decodable {
-    let trackId: UInt
+    let trackId: String
     let artistName: String
     let country: String
     let longDescript: String
@@ -39,7 +39,7 @@ struct SearchModel: Decodable {
         artistName = try values.decodeIfPresent(String.self, forKey: .artistName) ?? ""
         artworkUrl100 = try values.decodeIfPresent(String.self, forKey: .artworkUrl100) ?? ""
         trackCensoredName = try values.decodeIfPresent(String.self, forKey: .trackCensoredName) ?? ""
-        trackId = try values.decodeIfPresent(UInt.self, forKey: .trackId) ?? 0
+        trackId = try values.decodeIfPresent(String.self, forKey: .trackId) ?? ""
         country = try values.decodeIfPresent(String.self, forKey: .country) ?? ""
         longDescript = try values.decodeIfPresent(String.self, forKey: .longDescript) ?? ""
         descript = try values.decodeIfPresent(String.self, forKey: .descript) ?? ""

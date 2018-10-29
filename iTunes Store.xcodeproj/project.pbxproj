@@ -20,6 +20,7 @@
 		052EB3B9217CD8500067CBCC /* Instantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3B8217CD8500067CBCC /* Instantiatable.swift */; };
 		052EB3BB217D01100067CBCC /* UIImage+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3BA217D01100067CBCC /* UIImage+Utilities.swift */; };
 		052EB3BD217D13D30067CBCC /* UIViewController+AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052EB3BC217D13D30067CBCC /* UIViewController+AlertView.swift */; };
+		055471842187487C00E4EF42 /* NavigationButtonable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055471832187487C00E4EF42 /* NavigationButtonable.swift */; };
 		056C72D12174D5EC00308E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C72D02174D5EC00308E3B /* AppDelegate.swift */; };
 		056C72D62174D5EC00308E3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056C72D42174D5EC00308E3B /* Main.storyboard */; };
 		056C72D82174D5ED00308E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056C72D72174D5ED00308E3B /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 		052EB3B8217CD8500067CBCC /* Instantiatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instantiatable.swift; sourceTree = "<group>"; };
 		052EB3BA217D01100067CBCC /* UIImage+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Utilities.swift"; sourceTree = "<group>"; };
 		052EB3BC217D13D30067CBCC /* UIViewController+AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+AlertView.swift"; sourceTree = "<group>"; };
+		055471832187487C00E4EF42 /* NavigationButtonable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonable.swift; sourceTree = "<group>"; };
 		056C72CD2174D5EC00308E3B /* iTunes Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTunes Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056C72D02174D5EC00308E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056C72D52174D5EC00308E3B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				052EB3B8217CD8500067CBCC /* Instantiatable.swift */,
 				052EB3A121778B990067CBCC /* NibLoadable.swift */,
 				056C736C2176915E00308E3B /* StoryboardLoadable.swift */,
+				055471832187487C00E4EF42 /* NavigationButtonable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				056C7371217697AE00308E3B /* SearchBar+TextField.swift in Sources */,
 				056C73152174D67900308E3B /* NetworkManager.swift in Sources */,
 				056C73172174D67900308E3B /* HTTPTask.swift in Sources */,
+				055471842187487C00E4EF42 /* NavigationButtonable.swift in Sources */,
 				052EB3BD217D13D30067CBCC /* UIViewController+AlertView.swift in Sources */,
 				052EB3BB217D01100067CBCC /* UIImage+Utilities.swift in Sources */,
 				052EB3B0217BD0A70067CBCC /* DetailViewModel.swift in Sources */,
